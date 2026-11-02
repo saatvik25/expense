@@ -1,0 +1,34 @@
+## .NET and Build Outputs
+[Bb]in/
+[Oo]bj/
+[Ll]og/
+[Ll]ogs/
+
+## Visual Studio / VS Code / JetBrains / Antigravity
+.vscode/
+.idea/
+*.user
+*.userosscache
+*.suo
+*.userprefs
+*.pidb
+*.booproj
+*.svclog
+
+## macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+## Local configuration and secrets
+appsettings.local.json
+appsettings.*.local.json
+appsettings.Secrets.json
+*.secrets.json
+.env
+.env.*
+
+## Entity Framework Core Migrations bundle
+efbundle
+efbundle.exe

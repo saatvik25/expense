@@ -1,0 +1,106 @@
+@model EALRMS.Models.Application
+
+@{
+    ViewData["Title"] = $"Edit - {Model.Name}";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-xl-7">
+        <!-- Navigation breadcrumb -->
+        <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a asp-action="Index" class="text-decoration-none">Applications</a></li>
+                <li class="breadcrumb-item"><a asp-action="Details" asp-route-id="@Model.Id" class="text-decoration-none">@Model.Name</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Edit</li>
+            </ol>
+        </nav>
+
+        <!-- Edit Form Card -->
+        <div class="enterprise-card">
+            <div class="enterprise-card-header d-flex justify-content-between align-items-center">
+                <div>
+                    <h1 class="h4 fw-bold text-dark mb-1">Edit Application</h1>
+                    <p class="text-muted small mb-0">Update metadata and configuration for application #@Model.Id.</p>
+                </div>
+                <span class="badge bg-light text-secondary border">ID: @Model.Id</span>
+            </div>
+            
+            <div class="enterprise-card-body">
+                <form asp-action="Edit" method="post" id="edit-app-form">
+                    @Html.AntiForgeryToken()
+                    
+                    <div asp-validation-summary="ModelOnly" class="alert alert-danger py-2 small" role="alert"></div>
+
+                    <!-- Hidden field for Id to bind correctly back to the model -->
+                    <input type="hidden" asp-for="Id" />
+
+                    <!-- Application Name -->
+                    <div class="mb-3">
+                        <label asp-for="Name" class="form-label required">Application Name *</label>
+                        <input asp-for="Name" class="form-control" id="input-edit-name" />
+                        <span asp-validation-for="Name" class="field-validation-error"></span>
+                    </div>
+
+                    <!-- Technology Stack -->
+                    <div class="mb-3">
+                        <label asp-for="Technology" class="form-label required">Technology Stack *</label>
+                        <input asp-for="Technology" class="form-control" id="input-edit-technology" />
+                        <span asp-validation-for="Technology" class="field-validation-error"></span>
+                    </div>
+
+                    <div class="row">
+                        <!-- Version -->
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Version" class="form-label">Version</label>
+                            <input asp-for="Version" class="form-control" id="input-edit-version" />
+                            <span asp-validation-for="Version" class="field-validation-error"></span>
+                        </div>
+
+                        <!-- Status -->
+                        <div class="col-md-6 mb-3">
+                            <label asp-for="Status" class="form-label">Lifecycle Status *</label>
+                            <select asp-for="Status" class="form-select" id="select-edit-status">
+                                <option value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
+                            </select>
+                            <span asp-validation-for="Status" class="field-validation-error"></span>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label">Description</label>
+                        <textarea asp-for="Description" class="form-control" rows="3" id="input-edit-description"></textarea>
+                        <span asp-validation-for="Description" class="field-validation-error"></span>
+                    </div>
+
+                    <!-- Audit Metadata (Read-Only) -->
+                    <div class="bg-light p-3 rounded mb-4 border">
+                        <div class="row small text-muted">
+                            <div class="col-sm-6">
+                                <strong>Registered At:</strong> @Model.CreatedAt.ToString("yyyy-MM-dd HH:mm:ss") UTC
+                            </div>
+                            <div class="col-sm-6">
+                                <strong>Last Modified:</strong> @(Model.UpdatedAt.HasValue ? Model.UpdatedAt.Value.ToString("yyyy-MM-dd HH:mm:ss") + " UTC" : "Never")
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="d-flex align-items-center justify-content-between pt-3 border-top">
+                        <a asp-action="Index" class="btn btn-enterprise-outline" id="btn-cancel-edit">
+                            Back to List
+                        </a>
+                        <button type="submit" class="btn btn-enterprise-primary" id="btn-submit-edit">
+                            Save Changes
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

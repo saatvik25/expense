@@ -1,0 +1,90 @@
+@model EALRMS.Models.Application
+
+@{
+    ViewData["Title"] = $"Details - {Model.Name}";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-xl-7">
+        <!-- Navigation breadcrumb -->
+        <nav aria-label="breadcrumb" class="mb-3">
+            <ol class="breadcrumb mb-0">
+                <li class="breadcrumb-item"><a asp-action="Index" class="text-decoration-none">Applications</a></li>
+                <li class="breadcrumb-item active" aria-current="page">@Model.Name</li>
+            </ol>
+        </nav>
+
+        <!-- Details Card -->
+        <div class="enterprise-card">
+            <div class="enterprise-card-header d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center gap-2">
+                    <h1 class="h4 fw-bold text-dark mb-0">@Model.Name</h1>
+                    @if (Model.Status == "Active")
+                    {
+                        <span class="badge-status-active">Active</span>
+                    }
+                    else
+                    {
+                        <span class="badge-status-inactive">Inactive</span>
+                    }
+                </div>
+                <span class="badge bg-light text-secondary border">ID #@Model.Id</span>
+            </div>
+
+            <div class="enterprise-card-body">
+                <dl class="row mb-0">
+                    <dt class="col-sm-4 text-muted small text-uppercase">Technology Stack</dt>
+                    <dd class="col-sm-8 fw-semibold">
+                        <span class="badge bg-light text-dark border px-2 py-1">@Model.Technology</span>
+                    </dd>
+
+                    <dt class="col-sm-4 text-muted small text-uppercase mt-3">Release Version</dt>
+                    <dd class="col-sm-8 mt-3">
+                        @(string.IsNullOrEmpty(Model.Version) ? "Not Specified" : Model.Version)
+                    </dd>
+
+                    <dt class="col-sm-4 text-muted small text-uppercase mt-3">Description</dt>
+                    <dd class="col-sm-8 mt-3">
+                        @if (string.IsNullOrEmpty(Model.Description))
+                        {
+                            <span class="text-muted fst-italic">No description provided.</span>
+                        }
+                        else
+                        {
+                            <span>@Model.Description</span>
+                        }
+                    </dd>
+
+                    <dt class="col-sm-4 text-muted small text-uppercase mt-3">Database Host</dt>
+                    <dd class="col-sm-8 mt-3">
+                        <code>PostgreSQL: localhost:5432/ealrms_db</code>
+                    </dd>
+
+                    <dt class="col-sm-4 text-muted small text-uppercase mt-3">Registered At</dt>
+                    <dd class="col-sm-8 mt-3 text-secondary">
+                        @Model.CreatedAt.ToString("f") (UTC)
+                    </dd>
+
+                    <dt class="col-sm-4 text-muted small text-uppercase mt-3">Last Modified</dt>
+                    <dd class="col-sm-8 mt-3 text-secondary">
+                        @(Model.UpdatedAt.HasValue ? Model.UpdatedAt.Value.ToString("f") + " (UTC)" : "No revisions recorded")
+                    </dd>
+                </dl>
+            </div>
+
+            <div class="enterprise-card-footer d-flex justify-content-between align-items-center">
+                <a asp-action="Index" class="btn btn-enterprise-outline" id="btn-back-list">
+                    &larr; Back to Inventory
+                </a>
+                <div class="d-flex gap-2">
+                    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-enterprise-primary" id="btn-edit-details">
+                        Edit Application
+                    </a>
+                    <a asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-enterprise-outline text-danger" id="btn-delete-details">
+                        Delete
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
