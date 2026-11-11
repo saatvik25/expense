@@ -4,7 +4,6 @@ EALRMS is a centralized enterprise platform designed to manage application inven
 This repository contains **MVP 1.0**, focusing on **Application Inventory Management** using C#, ASP.NET Core MVC, Entity Framework Core, and PostgreSQL
 --
 ## 1. Business Problem
-
 Modern software enterprises maintain dozens or hundreds of internal services, APIs, customer portals, and background jobs. Without a centralized inventory:
 - Engineering leaders lose visibility into which technology stacks are running in production.
 - Teams struggle to track decommissioned vs. active services.
