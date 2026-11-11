@@ -1,5 +1,4 @@
-# EALRMS — Enterprise Application Lifecycle & Release Management System
-
+# EALRMS — Enterprise Application Lifecycle & Release Management Syste
 EALRMS is a centralized enterprise platform designed to manage application inventories, software releases, and technical issues across an organization.
 
 This repository contains **MVP 1.0**, focusing on **Application Inventory Management** using C#, ASP.NET Core MVC, Entity Framework Core, and PostgreSQL
