@@ -1,4 +1,4 @@
-# EALRMS — Enterprise Application Lifecycle & Release Management Syste
+# EALRMS — Enterprise Application Lifecycle & Release Management System
 EALRMS is a centralized enterprise platform designed to manage application inventories, software releases, and technical issues across an organization.
 
 
