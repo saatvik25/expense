@@ -8,6 +8,7 @@ Modern software enterprises maintain dozens or hundreds of internal services, AP
 - Teams struggle to track decommissioned vs. active services.
 - Audit trails for when systems were introduced or modified become fragmented across spreadsheets.
 
+
 **EALRMS MVP 1.0** solves this by establishing a single source of truth for all enterprise applications with end-to-end CRUD operations, reliable auditing, and robust validation.
 
 ---
