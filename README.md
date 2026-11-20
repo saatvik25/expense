@@ -11,7 +11,6 @@ Modern software enterprises maintain dozens or hundreds of internal services, AP
 **EALRMS MVP 1.0** solves this by establishing a single source of truth for all enterprise applications with end-to-end CRUD operations, reliable auditing, and robust validation.
 
 ---
-
 ## 2. MVP 1.0 Core Features
 
 1. **Application Inventory Table (`/Applications`)**:
